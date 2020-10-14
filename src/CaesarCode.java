@@ -1,26 +1,47 @@
+import com.sun.xml.internal.fastinfoset.util.CharArray;
+
+import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CaesarCode {
     public static void main(String[] args) {
-
-        File file = new File("D:\\DevelopJava\\caesar-code\\respositori file\\code.txt");
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String mail = bufferedReader.readLine().replaceAll("\\p{Punct}"," ").toLowerCase();;
-
-            char[] charMail = mail.toCharArray();
-            char [] alpfavit = {'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к',
-                    'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'};
+        String mail = ("Еъёчхф Вхзёюлх, адздёиу ф ждэщхб")
+                .replaceAll("\\p{Punct}"," ").toLowerCase();;
 
 
-            System.out.println(alpfavit);
+        List<Character> alphavit = new ArrayList<Character>(Arrays.asList('а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к',
+                    'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'));
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int step = 1;
+        String rez = "";
+
+            for (int j = 0; j < alphavit.size() ; j++) {
+                int repIndex = mail.indexOf(alphavit.get(0));
+                rez = mail.replace(mail.charAt(repIndex), alphavit.get(step));
+                ++ step;
+                if (step == 32){
+                 step = step-31;
+                }
+                System.out.println(rez);
+            }
+
+
+//
+//        if (mail.charAt(0) == alphavit.get(5)){
+//           String rez =  mail.replace(mail.charAt(0), alphavit.get(5+3));
+//            System.out.println(rez);
+//        }
+
+
+
+
+
 
     }
 }
