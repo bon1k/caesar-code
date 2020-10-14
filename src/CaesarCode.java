@@ -22,7 +22,7 @@ public class CaesarCode {
         String rez = "";
 
         for (int j = 0; j < alphavit.size() ; j++) {
-            int repIndex = mail.indexOf(alphavit.get(0));
+            int repIndex = mail.indexOf(alphavit.get(j));
             rez = mail.replace(mail.charAt(repIndex), alphavit.get(step));
             ++ step;
             if (step == 32){
